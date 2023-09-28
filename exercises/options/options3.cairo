@@ -1,8 +1,6 @@
 // options3.cairo
 // Execute `starklings hint options3` or use the `hint` watch subcommand for a hint.
 
-// I AM NOT DONE
-
 use option::OptionTrait;
 use debug::PrintTrait;
 use array::ArrayTrait;
@@ -12,7 +10,6 @@ struct Student {
     name: felt252,
     courses: Array<Option<felt252>>,
 }
-
 
 fn display_grades(student: @Student, index: usize) {
     // don't mind these lines! They are required when
@@ -41,10 +38,13 @@ fn display_grades(student: @Student, index: usize) {
     // TODO: Modify the following lines so that if there is a grade for the course, it is printed.
     //       Otherwise, print "No grade".
     // 
-    course.unwrap().print();
+    if course.is_some() {
+        course.unwrap().print();
+    } else {
+        ('No grade').print();
+    }
     display_grades(student, index + 1);
 }
-
 
 #[test]
 #[available_gas(20000000)]
@@ -58,7 +58,6 @@ fn test_all_defined() {
     display_grades(@student, 0);
 }
 
-
 #[test]
 #[available_gas(20000000)]
 fn test_some_empty() {
@@ -71,3 +70,4 @@ fn test_some_empty() {
     let mut student = Student { name: 'Bob', courses: courses };
     display_grades(@student, 0);
 }
+

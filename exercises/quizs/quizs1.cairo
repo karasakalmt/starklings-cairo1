@@ -4,12 +4,16 @@
 // Write a function that calculates the price of an order of apples given
 // the quantity bought. No hints this time!
 
-// I AM NOT DONE
-
 // Put your function here!
-// fn calculate_price_of_apples{
-
-// }
+fn calculate_price_of_apples(apples: u8) -> felt252 {
+    // let mut res: felt252 = 0;
+    if (apples <= 40) {
+        apples.into() * 3_felt252
+    } else {
+        apples.into() * 2_felt252
+    }
+// res
+}
 
 // Do not change the tests!
 #[test]
